@@ -1,145 +1,88 @@
-# Banking Transaction Examples
+# Banking Transaction Example
 
-This directory contains examples of implementing banking operations using Accord transactions in Cassandra.
+This example demonstrates atomic bank transfers using Apache Cassandra's ACID transaction capabilities via Accord. It showcases how to maintain consistency when moving money between accounts.
 
-## Examples Included
+## Overview
 
-1. Basic Money Transfer
-2. Overdraft Protection
-3. Multi-Currency Support
-4. Account Management
+The example implements a basic banking system with:
+- Account management with transactional support
+- Atomic transfers between accounts
+- Balance verification before transfers
+- Automatic rollback on failures
 
-## Schema Definition
+## Schema
 
 ```sql
--- schemas.cql
-CREATE KEYSPACE IF NOT EXISTS banking WITH replication = {
-    'class': 'SimpleStrategy',
-    'replication_factor': 1
-};
+CREATE KEYSPACE IF NOT EXISTS banking 
+WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
 
--- Account table with balance and currency
-CREATE TABLE banking.accounts (
-    account_id text,
-    balance decimal,
-    currency text,
+CREATE TABLE banking.accounts (     
     account_holder text,
-    status text,
-    PRIMARY KEY (account_id)
-) WITH transactional_mode = 'full';
-
--- Transaction history
-CREATE TABLE banking.transactions (
-    transaction_id uuid,
-    account_id text,
-    transaction_type text,
-    amount decimal,
-    currency text,
-    timestamp timestamp,
-    status text,
-    PRIMARY KEY (account_id, timestamp, transaction_id)
+    account_balance decimal,
+    PRIMARY KEY (account_holder)
 ) WITH transactional_mode = 'full';
 ```
 
-## Basic Money Transfer
+## Quick Start
 
-Implements a basic money transfer between two accounts with proper error handling:
-
-```sql
--- transfer.cql
-BEGIN TRANSACTION
-    -- Get source account balance
-    LET source = (SELECT balance, currency 
-                 FROM banking.accounts 
-                 WHERE account_id = 'ACC001');
-
-    -- Verify sufficient funds
-    IF source.balance >= 100.00 THEN
-        -- Debit source account
-        UPDATE banking.accounts 
-        SET balance = balance - 100.00 
-        WHERE account_id = 'ACC001';
-
-        -- Credit destination account
-        UPDATE banking.accounts 
-        SET balance = balance + 100.00 
-        WHERE account_id = 'ACC002';
-
-        -- Record transaction for source
-        INSERT INTO banking.transactions(
-            transaction_id, account_id, transaction_type, 
-            amount, currency, timestamp, status
-        ) VALUES (
-            uuid(), 'ACC001', 'DEBIT', 
-            100.00, 'USD', toTimestamp(now()), 'COMPLETED'
-        );
-
-        -- Record transaction for destination
-        INSERT INTO banking.transactions(
-            transaction_id, account_id, transaction_type, 
-            amount, currency, timestamp, status
-        ) VALUES (
-            uuid(), 'ACC002', 'CREDIT', 
-            100.00, 'USD', toTimestamp(now()), 'COMPLETED'
-        );
-    END IF
-COMMIT TRANSACTION;
-```
-
-## Setup Instructions
-
-1. Start Cassandra with Accord:
+1. Run the setup script:
 ```bash
 ./setup.sh
 ```
 
-2. Create the schema:
+This will:
+- Start a Cassandra container with Accord support
+- Create the banking keyspace and tables
+- Load sample account data
+- Verify the setup
+
+2. Execute a transfer:
 ```bash
-cqlsh -f schemas.cql
+docker exec -i cassandra-accord cqlsh < transfer.cql
 ```
 
-3. Load sample data:
-```bash
-cqlsh -f sample_data.cql
+## Included Files
+
+- `schemas.cql`: Table definitions
+- `sample_data.cql`: Initial account data (Bob and Alice with $100 each)
+- `transfer.cql`: Example transfer transaction ($20 from Alice to Bob)
+- `setup.sh`: Automated setup script
+
+## Example Transfer
+
+The transfer script demonstrates:
+- Balance checking before transfer
+- Atomic updates to both accounts
+- Transaction rollback on insufficient funds
+
+```sql
+BEGIN TRANSACTION     
+    LET fromBalance = (SELECT account_balance FROM banking.accounts 
+                      WHERE account_holder='alice');    
+    
+    IF fromBalance.account_balance >= 20 THEN        
+        UPDATE banking.accounts SET account_balance -= 20 
+        WHERE account_holder='alice';        
+        UPDATE banking.accounts SET account_balance += 20 
+        WHERE account_holder='bob';    
+    END IF
+COMMIT TRANSACTION;
 ```
 
-## Running the Examples
+## Implementation Details
 
-1. Basic Transfer:
-```bash
-cqlsh -f transfer.cql
-```
+- Transactions automatically roll back if any part fails
+- Balance checks prevent overdrafts
+- All operations are atomic and isolated
 
-2. Check results:
-```bash
-cqlsh -f verify_transfer.cql
-```
+## Getting Help
 
-## Implementation Notes
+Join our Discord community for support and discussions:
+https://discord.gg/GrRCajJqmQ
 
-### Error Handling
-- Transactions automatically roll back on failure
-- Status tracking for each transaction
-- Proper currency validation
+## Next Steps
 
-### Performance Considerations
-- Minimal transaction scope
-- Efficient schema design
-- Index usage optimization
-
-### Safety Features
-- Balance checks before transfer
-- Currency compatibility validation
-- Transaction logging
-
-## Testing
-
-Run the test suite:
-```bash
-./run_tests.sh
-```
-
-The test suite includes:
-- Balance verification
-- Concurrent transfer testing
-- Error condition handling
+Try these scenarios:
+- Transfer more money than available
+- Run concurrent transfers
+- Verify final balances
