@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Setting up inventory management examples..."
+echo "Setting up inventory transaction examples..."
 
 # Check if Cassandra is running
 if ! docker ps | grep -q cassandra-accord; then
@@ -9,24 +9,26 @@ if ! docker ps | grep -q cassandra-accord; then
     
     # Wait for Cassandra to be ready
     echo "Waiting for Cassandra to start..."
-    while ! docker exec cassandra-accord cqlsh -e "describe keyspaces" > /dev/null 2>&1; do
+    while ! docker exec cassandra-accord ./bin/cqlsh -e "describe keyspaces" > /dev/null 2>&1; do
         sleep 2
     done
 fi
 
 # Create schema
 echo "Creating schema..."
-docker exec -i cassandra-accord cqlsh < schemas.cql
+docker exec -i cassandra-accord ./bin/cqlsh < schemas.cql
 
 # Load sample data
 echo "Loading sample data..."
-docker exec -i cassandra-accord cqlsh < sample_data.cql
+docker exec -i cassandra-accord ./bin/cqlsh < sample_data.cql
 
 echo "Setup complete! Running verification..."
 
 # Verify setup
-docker exec -i cassandra-accord cqlsh -e "
-SELECT product_id, name, stock_count, reserved_count 
+docker exec -i cassandra-accord ./bin/cqlsh -e "
+SELECT item, inventory_count 
 FROM inventory.products;"
 
-echo "You can now run the example transactions."
+echo ""
+echo "Setup complete! You can now run inventory transactions using:"
+echo "docker exec -i cassandra-accord ./bin/cqlsh < transaction.cql"

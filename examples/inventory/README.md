@@ -1,32 +1,56 @@
-#!/bin/bash
+# Cassandra ACID Transactions: Inventory Management Example
 
-echo "Setting up inventory management examples..."
+This example demonstrates how to implement a robust inventory management system using Apache Cassandra's ACID transactions. The example showcases how to handle concurrent inventory updates while maintaining data consistency.
 
-# Check if Cassandra is running
-if ! docker ps | grep -q cassandra-accord; then
-    echo "Starting Cassandra container..."
-    docker run -d --name cassandra-accord -p 9042:9042 pmcfadin/cassandra-accord
-    
-    # Wait for Cassandra to be ready
-    echo "Waiting for Cassandra to start..."
-    while ! docker exec cassandra-accord cqlsh -e "describe keyspaces" > /dev/null 2>&1; do
-        sleep 2
-    done
-fi
+## Overview
 
-# Create schema
-echo "Creating schema..."
-docker exec -i cassandra-accord cqlsh < schemas.cql
+The example implements two main tables:
+- `products`: Stores product information and inventory counts
+- `shopping_cart`: Tracks items added to user shopping carts
 
-# Load sample data
-echo "Loading sample data..."
-docker exec -i cassandra-accord cqlsh < sample_data.cql
+Key features demonstrated:
+- Atomic inventory updates
+- Race condition prevention
+- Shopping cart management
+- Transactional consistency across tables
 
-echo "Setup complete! Running verification..."
+## Prerequisites
 
-# Verify setup
-docker exec -i cassandra-accord cqlsh -e "
-SELECT product_id, name, stock_count, reserved_count 
-FROM inventory.products;"
+- Docker installed on your system
+- Basic understanding of CQL (Cassandra Query Language)
 
-echo "You can now run the example transactions."
+## Quick Start
+
+1. Run the setup script:
+```bash
+./setup.sh
+```
+
+This will:
+- Start a Cassandra container with Accord transactions enabled
+- Create the necessary schema
+- Load sample data
+- Verify the setup
+
+2. Try the example transaction:
+```bash
+docker exec -i cassandra-accord ./bin/cqlsh < transaction.cql
+```
+
+## Files Included
+
+- `schemas.cql`: Table definitions
+- `sample_data.cql`: Initial data load
+- `transaction.cql`: Example transaction
+- `setup.sh`: Setup script
+
+## Join Our Community!
+
+Have questions or want to learn more about Cassandra transactions? Join our Discord community:
+https://discord.gg/GrRCajJqmQ
+
+## Next Steps
+
+- Explore other transaction examples in this repository
+- Try modifying the inventory counts and observe ACID properties
+- Implement your own transactional workflows
