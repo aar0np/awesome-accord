@@ -15,7 +15,7 @@ docker run -d \
   pmcfadin/cassandra-accord
 
 # Connect using cqlsh
-docker exec -it cassandra-accord cqlsh
+docker exec -it cassandra-accord ./bin/cqlsh
 ```
 
 ## Environment Variables

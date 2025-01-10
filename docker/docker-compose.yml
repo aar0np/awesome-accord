@@ -11,7 +11,7 @@ services:
     volumes:
       - cassandra_data:/opt/cassandra/data
     healthcheck:
-      test: ["CMD", "cqlsh", "-e", "describe keyspaces"]
+      test: ["CMD", "./bin/cqlsh", "-e", "describe keyspaces"]
       interval: 15s
       timeout: 10s
       retries: 10
