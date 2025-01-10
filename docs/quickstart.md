@@ -17,7 +17,7 @@ docker pull pmcfadin/cassandra-accord
 docker run -d --name cassandra-accord -p 9042:9042 pmcfadin/cassandra-accord
 
 # Connect with cqlsh
-docker exec -it cassandra-accord cqlsh
+docker exec -it cassandra-accord ./bin/cqlsh
 ```
 
 ### Option 2: Multi-Node Lab (via easy-cass-lab)

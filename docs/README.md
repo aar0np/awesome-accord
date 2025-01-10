@@ -1,36 +1,79 @@
 # Accord Transaction Documentation
 
-Welcome to the Accord transaction documentation! Here you'll find everything you need to understand and implement ACID transactions in Apache Cassandra.
+Welcome to the Accord transaction documentation! Here you'll find resources and guides for implementing ACID transactions in Apache Cassandra.
 
 ## Table of Contents
 
 ### Getting Started
 - [Quick Start Guide](quickstart.md)
-- [Key Concepts](concepts.md)
-- [Transaction Basics](transactions.md)
+- [Guide](cassandra_transactional_guide.md)
+- [Use Cases](use-cases.md)
 
-### Use Cases & Patterns
-- [Common Use Cases](use-cases.md)
-- [Transaction Patterns](patterns.md)
-- [Data Modeling](data-modeling.md)
+### Deployment Options
 
-### Advanced Topics
-- [Performance Tuning](performance.md)
-- [Multi-Region Transactions](multi-region.md)
-- [Troubleshooting](troubleshooting.md)
+#### Docker Deployment
+- Single-node testing environment
+- Quick setup for development
+- Configuration guidelines
+- [View Docker Setup](../docker/)
 
-### Reference
-- [Configuration Reference](configuration.md)
-- [CQL Extensions](cql-extensions.md)
-- [Best Practices](best-practices.md)
+#### Easy-Cass-Lab
+- Multi-node cluster setup
+- Development environment configuration
+- Performance testing capabilities
+- [View Easy-Cass-Lab Setup](../easy-cass-lab/)
 
-## Where to Start
+### Working with Transactions
 
-- **New to Accord?** Start with our [Quick Start Guide](quickstart.md)
-- **Looking for examples?** Check out [Common Use Cases](use-cases.md)
-- **Need help?** Visit our [Troubleshooting](troubleshooting.md) guide
-- **Have questions?** Join our [Discord community](https://discord.gg/GrRCajJqmQ)
+Learn how to implement transactions through our example use cases:
 
-## Contributing to the Docs
+#### Banking Operations
+- Account transfers with ACID guarantees
+- Balance checks and updates
+- Safe concurrent transactions
+- [View Banking Examples](../examples/banking/)
 
-Found a mistake? Want to add more examples? Check our [contribution guidelines](../CONTRIBUTING.md) to learn how you can help improve these docs.
+#### Inventory Management
+- Race-free inventory tracking
+- Shopping cart implementation
+- Concurrent order processing
+- [View Inventory Examples](../examples/inventory/)
+
+#### User Management
+- Multi-table atomic operations
+- Safe user creation and updates
+- Maintaining data consistency across tables
+- [View User Management Examples](../examples/user-management/)
+
+## Community Resources
+
+- Join our [Discord community](https://discord.gg/GrRCajJqmQ) for:
+  - Real-time support
+  - Discussion with other developers
+  - Updates and announcements
+  
+- Contributing:
+  - Report issues via GitHub
+  - Suggest improvements
+  - Share your use cases
+
+## Need Help?
+
+If you have questions or need assistance:
+1. Check our example use cases
+2. Review the deployment guides
+3. Join our Discord community
+4. Submit an issue on GitHub
+
+## Repository Structure
+```
+/
+├── docker/                    # Docker setup files
+├── easy-cass-lab/            # Multi-node cluster tools
+├── examples/                  # Implementation examples
+│   ├── banking/              # Financial transactions
+│   ├── inventory/            # Stock management
+│   └── user-management/      # User operations
+├── docs/                     # Documentation
+└── scripts/                  # Utility scripts
+```
