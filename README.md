@@ -9,6 +9,16 @@ Welcome to the Awesome Accord repository! This guide provides resources and exam
 - **Use Cases & Examples**: Production-ready implementations
 - **Learning Resources**: Documentation and best practices
 
+## ⚠️ Warning and Disclaimer ⚠️
+Accord is in active development and still a feature branch in the Apasche Cassandra® Repo. You will find bug. What we ask is that you help with a contribution of a bug report. You can use the Github issues for this or use the Planet Cassandra Discord channel for accord listed below. A bug report should have the folowing:
+  - The data model used
+  - Actions to reproduce the bug
+  - Full stack trace from system.log
+
+If you have suggestions about syntax or improving the overall developer expirience, we want to hear about that to! Add it as a suggestion or feature request using Github issues or let us know in the Planet Cassandra Discord. 
+
+Now, on to the fun!
+
 ## Quick Start Options
 
 ### Option 1: Docker (Single Node)
