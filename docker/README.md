@@ -94,7 +94,7 @@ Try the examples after connecting and see how the new transaction syntax works.
 
 
 ## Need Help?
-
+- Check out the [Github Discussions](https://github.com/pmcfadin/awesome-accord/) in the repository
 - Join our [Discord](https://discord.gg/GrRCajJqmQ) for real-time support
 - Check the [Troubleshooting Guide](../docs/troubleshooting.md)
 - Report issues on GitHub

@@ -88,7 +88,7 @@ COMMIT TRANSACTION;
 - Join our [Discord](https://discord.gg/GrRCajJqmQ) community
 
 ## Getting Help
-
+- Check out the [Github Discussions](https://github.com/pmcfadin/awesome-accord/) in the repository
 - Check our [Troubleshooting](troubleshooting.md) guide
 - Ask in our [Discord](https://discord.gg/GrRCajJqmQ) channel
 - Review [Common Issues](troubleshooting.md#common-issues)

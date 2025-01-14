@@ -8,7 +8,7 @@ This directory contains practical, production-ready examples of using Accord tra
 examples/
 ├── banking/           # Financial transaction examples
 ├── inventory/         # Inventory management examples
-└──user-management/   # User registration and management
+└── user-management/   # User registration and management
 ```
 
 ## Example Categories
@@ -50,6 +50,7 @@ cd examples/banking
 
 ## Contributing
 
+Give us anyfeedback you have in [Github Discussions](https://github.com/pmcfadin/awesome-accord/)
 Want to add an example? See our [contribution guidelines](../CONTRIBUTING.md).
 
 ## Getting Help

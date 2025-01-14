@@ -77,6 +77,8 @@ COMMIT TRANSACTION;
 
 ## Getting Help
 
+Check out the [Github Discussions](https://github.com/pmcfadin/awesome-accord/) in the repository or...
+
 Join our Discord community for support and discussions:
 https://discord.gg/GrRCajJqmQ
 

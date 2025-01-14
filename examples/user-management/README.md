@@ -58,5 +58,8 @@ SELECT * FROM users.user_by_email WHERE email='patrick@datastax.com';
 
 ## Join Our Community
 
-Have questions or want to learn more about Cassandra transactions? Join our Discord community:
+Have questions or want to learn more about Cassandra transactions? 
+Check out the [Github Discussions](https://github.com/pmcfadin/awesome-accord/) in the repository or...
+
+Join our Discord community:
 https://discord.gg/GrRCajJqmQ
