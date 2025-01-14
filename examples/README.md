@@ -8,8 +8,7 @@ This directory contains practical, production-ready examples of using Accord tra
 examples/
 ├── banking/           # Financial transaction examples
 ├── inventory/         # Inventory management examples
-├── user-management/   # User registration and management
-└── utilities/         # Helper functions and common patterns
+└──user-management/   # User registration and management
 ```
 
 ## Example Categories
@@ -49,14 +48,6 @@ cd examples/banking
 
 4. Follow the example-specific README for detailed instructions.
 
-## Best Practices Demonstrated
-
-- Proper error handling
-- Retry strategies
-- Performance optimization
-- Monitoring and logging
-- Schema design patterns
-
 ## Contributing
 
 Want to add an example? See our [contribution guidelines](../CONTRIBUTING.md).
@@ -65,4 +56,3 @@ Want to add an example? See our [contribution guidelines](../CONTRIBUTING.md).
 
 - Check the [documentation](../docs/)
 - Join our [Discord](https://discord.gg/GrRCajJqmQ)
-- Review the [troubleshooting guide](../docs/troubleshooting.md)
