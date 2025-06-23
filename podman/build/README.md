@@ -1,9 +1,9 @@
-# Cassandra Accord Docker
+# Cassandra Accord Podman
 
-Run Apache Cassandra with ACID transactions using the Accord protocol. This Docker setup provides a ready-to-use environment for development and testing.
+Run Apache Cassandra with ACID transactions using the Accord protocol. This Podman setup provides a ready-to-use environment for development and testing.
 
 ## Prerequisites
-- Docker
+- Podman
 - Git
 - Ant (for building Cassandra)
 
@@ -24,7 +24,7 @@ ant
 cd ..
 ```
 
-Then build the Docker image:
+Then build the Podman image:
 ```bash
 chmod +x build.sh
 ./build.sh
@@ -34,10 +34,10 @@ chmod +x build.sh
 
 ```bash
 # Start a container
-docker run -d --name cassandra-accord -p 9042:9042 cassandra-accord
+podman run -d --name cassandra-accord -p 9042:9042 cassandra-accord
 
 # Connect with cqlsh
-docker exec -it cassandra-accord ./bin/cqlsh
+podman exec -it cassandra-accord ./bin/cqlsh
 ```
 
 ## Quick Example
@@ -65,7 +65,7 @@ Environment variables:
 
 Example with custom config:
 ```bash
-docker run -d \
+podman run -d \
   -e MAX_HEAP_SIZE=1G \
   -e HEAP_NEWSIZE=200M \
   -p 9042:9042 \
