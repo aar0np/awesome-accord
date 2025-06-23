@@ -4,7 +4,7 @@ This guide will get you up and running with Accord transactions in minutes. We'l
 
 ## Prerequisites
 
-- Docker installed (for single-node testing)
+- Docker or Podman installed (for single-node testing)
 - OR Homebrew (for multi-node setup)
 - Basic familiarity with CQL
 
@@ -20,7 +20,17 @@ docker run -d --name cassandra-accord -p 9042:9042 pmcfadin/cassandra-accord
 docker exec -it cassandra-accord ./bin/cqlsh
 ```
 
-### Option 2: Multi-Node Lab (via easy-cass-lab)
+### Option 2: Podman (Single Node)
+```bash
+# Pull and run the container
+podman pull pmcfadin/cassandra-accord
+podman run -d --name cassandra-accord -p 9042:9042 pmcfadin/cassandra-accord
+
+# Connect with cqlsh
+podman exec -it cassandra-accord ./bin/cqlsh
+```
+
+### Option 3: Multi-Node Lab (via easy-cass-lab)
 ```bash
 # Install easy-cass-lab
 brew tap rustyrazorblade/rustyrazorblade

@@ -17,6 +17,12 @@ Welcome to the Accord transaction documentation! Here you'll find resources and 
 - Configuration guidelines
 - [View Docker Setup](../docker/)
 
+#### Podman Deployment
+- Single-node testing environment
+- Quick setup for development
+- Configuration guidelines
+- [View Podman Setup](../podman/)
+
 #### Easy-Cass-Lab
 - Multi-node cluster setup
 - Development environment configuration
@@ -68,12 +74,14 @@ If you have questions or need assistance:
 ## Repository Structure
 ```
 /
-├── docker/                    # Docker setup files
+├── docker/                   # Docker setup files
 ├── easy-cass-lab/            # Multi-node cluster tools
-├── examples/                  # Implementation examples
+├── examples/                 # Implementation examples
 │   ├── banking/              # Financial transactions
 │   ├── inventory/            # Stock management
 │   └── user-management/      # User operations
 ├── docs/                     # Documentation
+├── podman/                   # Podman configuration and setup
 └── scripts/                  # Utility scripts
+
 ```

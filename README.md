@@ -4,7 +4,7 @@ Welcome to the Awesome Accord repository! This guide provides resources and exam
 
 ## What's Inside
 
-- **Quick Start with Docker**: Single-node deployment for immediate testing
+- **Quick Start with Docker & Podman**: Single-node deployment for immediate testing
 - **Lab Environment**: Multi-node cluster setup for development
 - **Use Cases & Examples**: Production-ready implementations
 - **Learning Resources**: Documentation and best practices
@@ -29,7 +29,13 @@ docker pull pmcfadin/cassandra-accord
 docker run -d --name cassandra-accord -p 9042:9042 pmcfadin/cassandra-accord
 ```
 
-### Option 2: Multi-Node Lab Environment
+### Option 2: Podman (Single Node)
+```bash
+podman pull pmcfadin/cassandra-accord
+podman run -d --name cassandra-accord -p 9042:9042 pmcfadin/cassandra-accord
+```
+
+### Option 3: Multi-Node Lab Environment
 ```bash
 brew tap rustyrazorblade/rustyrazorblade
 brew install easy-cass-lab
@@ -52,13 +58,14 @@ brew install easy-cass-lab
 
 ```
 /
-├── docker/              # Docker configuration and setup
-├── easy-cass-lab/      # Multi-node testing environment
-├── examples/           # Implementation examples
+├── docker/            # Docker configuration and setup
+├── easy-cass-lab/     # Multi-node testing environment
+├── examples/          # Implementation examples
 │   ├── banking/       # Financial transaction examples
 │   ├── inventory/     # Stock management examples
 │   └── user-mgmt/     # User operations examples
-└── docs/              # Guides and documentation
+├── docs/              # Guides and documentation
+└── podman/            # Podman configuration and setup
 ```
 
 ## Documentation
@@ -74,6 +81,7 @@ Our [documentation](./docs/README.md) includes:
 1. Choose your deployment option:
    - [Docker Guide](./docker/README.md)
    - [Easy-Cass-Lab Guide](./easy-cass-lab/README.md)
+   - [Podman Guide](./podman/README.md)
 2. Follow the [Quick Start Guide](./docs/quickstart.md)
 3. Explore [example implementations](./examples/)
 4. Connect with our [Discord community](https://discord.gg/GrRCajJqmQ)
