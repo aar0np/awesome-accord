@@ -1,6 +1,6 @@
-# 🐳 Docker Setup for Accord-Enabled Cassandra
+# Podman Setup for Accord-Enabled Cassandra
 
-Get started with ACID transactions in Cassandra using our pre-configured Docker image. This guide covers both single-node and multi-node setups.
+Get started with ACID transactions in Cassandra using our pre-configured image. This guide covers both single-node and multi-node setups.
 
 ## Quick Start (Single Node)
 
